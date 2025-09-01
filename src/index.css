@@ -8,42 +8,42 @@
 
 @layer base {
   :root {
-    /* Core Brand Colors - Sustainable & Professional */
-    --background: 0 0% 100%;
-    --foreground: 215 25% 15%;
+    /* AE&SC Brand Colors */
+    --background: 192 17% 95%;       /* #eff3f4 - Light gray background */
+    --foreground: 166 45% 14%;       /* #13322c - Dark teal */
     
-    /* Sustainable Green Palette */
-    --primary: 142 76% 36%;          /* Deep Forest Green */
-    --primary-foreground: 0 0% 100%;
-    --primary-light: 142 65% 45%;    /* Lighter Green */
-    --primary-glow: 142 85% 65%;     /* Green Glow */
+    /* Primary Brand Green */
+    --primary: 121 83% 35%;          /* #0fa612 - Brand green */
+    --primary-foreground: 192 17% 95%;
+    --primary-light: 87 91% 45%;     /* #67db0b - Bright green */
+    --primary-glow: 66 88% 45%;      /* #c6d90e - Yellow-green */
     
-    /* Technology Blue Palette */
-    --secondary: 200 95% 45%;        /* Vibrant Tech Blue */
-    --secondary-foreground: 0 0% 100%;
-    --secondary-light: 200 85% 60%;  /* Lighter Blue */
-    --secondary-glow: 200 100% 75%;  /* Blue Glow */
+    /* Secondary Teal */
+    --secondary: 166 45% 14%;        /* #13322c - Dark teal */
+    --secondary-foreground: 192 17% 95%;
+    --secondary-light: 166 30% 25%;  /* Lighter teal */
+    --secondary-glow: 166 45% 35%;   /* Teal glow */
     
-    /* African Earth Tones */
-    --accent: 25 85% 60%;            /* Warm Terracotta */
-    --accent-foreground: 0 0% 100%;
-    --accent-warm: 35 75% 55%;       /* Golden Earth */
-    --accent-deep: 15 75% 45%;       /* Deep Earth */
+    /* Accent Colors */
+    --accent: 87 91% 45%;            /* #67db0b - Bright green */
+    --accent-foreground: 166 45% 14%;
+    --accent-warm: 66 88% 45%;       /* #c6d90e - Yellow-green */
+    --accent-deep: 121 83% 35%;      /* #0fa612 - Deep green */
     
-    /* Neutral Palette */
-    --muted: 210 15% 96%;
-    --muted-foreground: 215 15% 55%;
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    /* Neutral Palette - Brand Grays */
+    --muted: 192 11% 90%;            /* #e2e6e7 - Light gray */
+    --muted-foreground: 0 0% 51%;    /* #808080 - Medium gray */
+    --card: 192 17% 95%;             /* #eff3f4 - Light background */
+    --card-foreground: 166 45% 14%;  /* #13322c - Dark teal */
     
-    /* UI Elements */
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
-    --border: 210 15% 90%;
-    --input: 210 15% 90%;
-    --ring: 142 76% 36%;
+    /* UI Elements - Brand Integration */
+    --popover: 192 17% 95%;          /* #eff3f4 - Light background */
+    --popover-foreground: 166 45% 14%;
+    --border: 192 11% 90%;           /* #e2e6e7 - Light gray border */
+    --input: 192 11% 90%;            /* #e2e6e7 - Light gray input */
+    --ring: 121 83% 35%;             /* #0fa612 - Brand green focus */
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 192 17% 95%;
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
@@ -63,30 +63,30 @@
   }
   
   .dark {
-    --background: 215 25% 8%;
-    --foreground: 210 20% 95%;
+    --background: 166 45% 8%;        /* Dark teal background */
+    --foreground: 192 17% 95%;
     
-    --primary: 142 76% 45%;
-    --primary-foreground: 215 25% 8%;
-    --primary-light: 142 65% 55%;
-    --primary-glow: 142 85% 75%;
+    --primary: 87 91% 45%;           /* Bright green in dark mode */
+    --primary-foreground: 166 45% 14%;
+    --primary-light: 66 88% 45%;     /* Yellow-green */
+    --primary-glow: 121 83% 45%;     /* Green glow */
     
-    --secondary: 200 95% 55%;
-    --secondary-foreground: 215 25% 8%;
-    --secondary-light: 200 85% 70%;
+    --secondary: 166 45% 25%;        /* Lighter teal */
+    --secondary-foreground: 192 17% 95%;
+    --secondary-light: 166 30% 35%;
     
-    --accent: 25 85% 70%;
-    --accent-foreground: 215 25% 8%;
-    --accent-warm: 35 75% 65%;
+    --accent: 66 88% 45%;            /* Yellow-green */
+    --accent-foreground: 166 45% 14%;
+    --accent-warm: 87 91% 45%;       /* Bright green */
     
-    --card: 215 25% 10%;
-    --card-foreground: 210 20% 95%;
-    --muted: 215 25% 12%;
-    --muted-foreground: 215 15% 65%;
-    --border: 215 25% 18%;
-    --input: 215 25% 18%;
-    --popover: 215 25% 10%;
-    --popover-foreground: 210 20% 95%;
+    --card: 166 45% 12%;             /* Dark teal card */
+    --card-foreground: 192 17% 95%;
+    --muted: 166 30% 18%;            /* Darker teal muted */
+    --muted-foreground: 0 0% 70%;    /* Lighter gray text */
+    --border: 166 30% 25%;           /* Teal border */
+    --input: 166 30% 25%;            /* Teal input */
+    --popover: 166 45% 12%;
+    --popover-foreground: 192 17% 95%;
   }
 }
 
