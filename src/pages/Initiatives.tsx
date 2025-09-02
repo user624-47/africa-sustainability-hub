@@ -1,5 +1,6 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import PageHeader from '@/components/PageHeader';
 import { Leaf, Zap, Users, Recycle, Sprout, Building } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -53,15 +54,14 @@ const Initiatives = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-accent to-primary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h1 className="text-5xl md:text-6xl font-display font-bold mb-8">Our Initiatives</h1>
-          <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
-            Driving Africa's sustainable transformation through strategic initiatives that create lasting positive impact across the continent.
-          </p>
-        </div>
-      </section>
+      {/* Page Header */}
+      <PageHeader 
+        title="Our Initiatives"
+        description="Driving sustainable change through innovative programs and collaborative action across Africa."
+        breadcrumbs={[
+          { label: 'Initiatives', href: '/initiatives' }
+        ]}
+      />
 
       {/* Initiatives Grid */}
       <section className="py-20 bg-background">

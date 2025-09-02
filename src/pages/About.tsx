@@ -1,5 +1,6 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import PageHeader from '@/components/PageHeader';
 import { Target, Users, Award, Globe, Leaf, Lightbulb } from 'lucide-react';
 
 const About = () => {
@@ -7,13 +8,59 @@ const About = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary to-accent">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h1 className="text-5xl md:text-6xl font-display font-bold mb-8">About AE&SC</h1>
-          <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
-            Leading Africa's transformation towards a sustainable energy future through innovation, collaboration, and strategic partnerships.
-          </p>
+      {/* Page Header */}
+      <PageHeader 
+        title="About AE&SC"
+        description="Leading Africa's transformation towards a sustainable energy future through innovation, collaboration, and strategic partnerships."
+        breadcrumbs={[
+          { label: 'About', href: '/about' }
+        ]}
+      />
+
+      {/* Who We Are */}
+      <section className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-8">
+              Who We Are
+            </h2>
+            <div className="h-1 w-24 bg-primary mx-auto mb-8 rounded-full"></div>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              The Africa Energy & Sustainability Consortium (AE&SC) is a pan-African organization dedicated to accelerating the continent's transition to sustainable energy systems. Founded in 2020, we bring together governments, private sector leaders, academic institutions, and civil society to drive innovation, policy reform, and large-scale implementation of sustainable energy solutions.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            <div className="bg-card p-8 rounded-2xl border border-border hover:shadow-lg transition-shadow duration-300">
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                <Globe className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-4 text-center">Our Reach</h3>
+              <p className="text-muted-foreground text-center">
+                Active in 12+ African countries with a network of 500+ organizations working together towards a sustainable energy future.
+              </p>
+            </div>
+            
+            <div className="bg-card p-8 rounded-2xl border border-border hover:shadow-lg transition-shadow duration-300">
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                <Lightbulb className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-4 text-center">Our Approach</h3>
+              <p className="text-muted-foreground text-center">
+                We combine cutting-edge research, policy advocacy, and on-the-ground implementation to create lasting impact across the continent.
+              </p>
+            </div>
+            
+            <div className="bg-card p-8 rounded-2xl border border-border hover:shadow-lg transition-shadow duration-300">
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                <Users className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-4 text-center">Our Community</h3>
+              <p className="text-muted-foreground text-center">
+                A diverse network of experts, innovators, and change-makers committed to building a sustainable future for Africa.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

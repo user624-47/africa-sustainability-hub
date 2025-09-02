@@ -1,5 +1,6 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import PageHeader from '@/components/PageHeader';
 import { Target, Globe, Zap, Shield, Users, TrendingUp } from 'lucide-react';
 
 const StrategicFocus = () => {
@@ -121,15 +122,14 @@ const StrategicFocus = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary to-secondary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h1 className="text-5xl md:text-6xl font-display font-bold mb-8">Strategic Focus</h1>
-          <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
-            Aligning with Agenda 2063 to build the Africa we want - sustainable, prosperous, and united.
-          </p>
-        </div>
-      </section>
+      {/* Page Header */}
+      <PageHeader 
+        title="Strategic Focus Areas"
+        description="Our targeted approach to driving sustainable development across Africa through focused initiatives and measurable impact."
+        breadcrumbs={[
+          { label: 'Strategic Focus', href: '/strategic-focus' }
+        ]}
+      />
 
       {/* Focus Areas */}
       <section className="py-20 bg-background">

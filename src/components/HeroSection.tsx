@@ -1,162 +1,176 @@
-import { ArrowRight, Play, Users, Target, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Globe, Target, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import heroBackground from '@/assets/hero-background.jpg';
+import { useState, useEffect } from 'react';
+
+const slides = [
+  {
+    icon: Globe,
+    title: "Let's Build a Sustainable Future Together!",
+    description: "Uniting Africa's brightest minds and boldest innovators to accelerate our continent's energy transition and sustainability journey.",
+    stats: [
+      { number: "500+", label: "Strategic Partners", color: "text-accent-warm" },
+      { number: "12", label: "African Countries", color: "text-accent" },
+      { number: "2030", label: "Sustainability Goals", color: "text-primary-glow" }
+    ],
+    overlay: "from-secondary/95 via-primary/80 to-accent/75"
+  },
+  {
+    icon: Target,
+    title: "Driving Clean Energy Innovation",
+    description: "Pioneering renewable energy solutions to power Africa's sustainable development and economic growth.",
+    stats: [
+      { number: "15GW", label: "Renewable Capacity", color: "text-accent" },
+      { number: "50M", label: "People Impacted", color: "text-accent-warm" },
+      { number: "80%", label: "Carbon Reduction", color: "text-primary-glow" }
+    ],
+    overlay: "from-blue-900/90 via-emerald-900/80 to-teal-700/75"
+  },
+  {
+    icon: Users,
+    title: "Empowering Communities",
+    description: "Creating lasting impact through education, training, and sustainable development initiatives.",
+    stats: [
+      { number: "200+", label: "Projects", color: "text-accent-warm" },
+      { number: "1M+", label: "Lives Touched", color: "text-accent" },
+      { number: "25", label: "Innovation Hubs", color: "text-primary-glow" }
+    ],
+    overlay: "from-amber-900/90 via-orange-800/80 to-red-700/75"
+  }
+];
 
 const HeroSection = () => {
-  const slides = [
-    {
-      badge: { icon: Globe, text: "Accelerating Africa's Energy Transition" },
-      title: "Let's Build a Sustainable Future Together!",
-      subtitle: "Uniting Africa's brightest minds and boldest innovators to accelerate our continent's energy transition and sustainability journey.",
-      stats: [
-        { number: "500+", label: "Strategic Partners", desc: "Across government, private sector & academia", color: "text-accent-warm" },
-        { number: "12", label: "African Countries", desc: "Leading the continental transformation", color: "text-accent" },
-        { number: "2030", label: "Sustainability Goals", desc: "Aligned with Agenda 2063 vision", color: "text-primary-glow" }
-      ]
-    },
-    {
-      badge: { icon: Target, text: "Driving Clean Energy Innovation" },
-      title: "Powering Africa with Renewable Energy",
-      subtitle: "Leading the transformation to sustainable energy solutions across the continent with cutting-edge technology and strategic partnerships.",
-      stats: [
-        { number: "15GW", label: "Renewable Capacity", desc: "Targeted renewable energy capacity by 2030", color: "text-accent" },
-        { number: "50M", label: "People Impacted", desc: "Lives improved through clean energy access", color: "text-accent-warm" },
-        { number: "80%", label: "Carbon Reduction", desc: "CO2 emissions reduction target", color: "text-primary-glow" }
-      ]
-    },
-    {
-      badge: { icon: Users, text: "Building Strategic Partnerships" },
-      title: "Collaborating for Continental Impact",
-      subtitle: "Fostering unprecedented cooperation between governments, private sector, and communities to achieve Africa's sustainability vision.",
-      stats: [
-        { number: "$5B", label: "Investment Mobilized", desc: "Capital raised for sustainability projects", color: "text-accent-warm" },
-        { number: "200+", label: "Active Projects", desc: "Ongoing sustainability initiatives", color: "text-accent" },
-        { number: "25", label: "Research Centers", desc: "Connected innovation hubs across Africa", color: "text-primary-glow" }
-      ]
-    }
-  ];
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      goToNext();
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [currentSlide]);
+
+  const goToNext = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  const goToPrev = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  const goToSlide = (index: number) => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide(index);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  const slide = slides[currentSlide];
 
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden">
-      <Carousel className="w-full h-screen" opts={{ loop: true }}>
-        <CarouselContent>
-          {slides.map((slide, index) => (
-            <CarouselItem key={index} className="relative min-h-screen flex items-center justify-center">
-              {/* Background Image with Enhanced Overlay */}
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image with Dynamic Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
+        style={{ 
+          backgroundImage: `url(${heroBackground})`,
+          opacity: isTransitioning ? 0.7 : 1,
+          transform: isTransitioning ? 'scale(1.05)' : 'scale(1)'
+        }}
+      />
+      <div className={`absolute inset-0 bg-gradient-to-br ${slide.overlay} transition-all duration-1000`} />
+      
+      {/* Slideshow Content */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 text-center text-white">
+        <div className={`transition-all duration-500 transform ${isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100'}`}>
+          <div className="inline-flex items-center space-x-2 bg-white/20 rounded-full px-6 py-2 mb-8">
+            <slide.icon className="w-5 h-5 text-accent" />
+            <span className="text-sm font-medium">
+              {currentSlide === 0 ? "Accelerating Africa's Energy Transition" : 
+               currentSlide === 1 ? "Driving Clean Energy Innovation" : 
+               "Empowering Communities"}
+            </span>
+          </div>
+          
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            {slide.title}
+          </h1>
+          
+          <p className="text-xl mb-12 text-white/90 max-w-3xl mx-auto">
+            {slide.description}
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <Button 
+              size="lg" 
+              className="bg-accent hover:bg-accent-warm text-secondary px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
+            >
+              {currentSlide === 0 ? "Join the Movement" : 
+               currentSlide === 1 ? "Explore Solutions" : "Get Involved"}
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            
+            <Button 
+              variant="outline" 
+              className="bg-white/10 border-white/30 text-white hover:bg-white/20 px-8 py-6 text-lg transition-all duration-300 hover:scale-105"
+            >
+              Learn More
+            </Button>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {slide.stats.map((stat, index) => (
               <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: `url(${heroBackground})` }}
-              />
-              
-              {/* Enhanced Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary/95 via-primary/80 to-accent/75" />
-              
-              {/* Animated Pattern Overlay */}
-              <div className="absolute inset-0 hero-pattern opacity-20 animate-pulse" />
-              
-              {/* Content Container */}
-              <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-                <div className="fade-in">
-                  {/* Enhanced Mission Badge */}
-                  <div className="inline-flex items-center space-x-3 bg-white/15 backdrop-blur-md rounded-full px-8 py-3 mb-12 border border-white/20">
-                    <slide.badge.icon className="w-5 h-5 text-accent" />
-                    <span className="text-base font-semibold tracking-wide">{slide.badge.text}</span>
-                  </div>
-                  
-                  {/* Enhanced Main Headline */}
-                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-8 leading-tight">
-                    {slide.title.split('Sustainable Future')[0]}
-                    {slide.title.includes('Sustainable Future') && (
-                      <span className="relative">
-                        <span className="bg-gradient-to-r from-accent to-accent-warm bg-clip-text text-transparent">
-                          Sustainable Future
-                        </span>
-                        <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-accent to-accent-warm rounded-full opacity-60"></div>
-                      </span>
-                    )}
-                    {slide.title.includes('Renewable Energy') && (
-                      <span className="relative">
-                        <span className="bg-gradient-to-r from-accent to-accent-warm bg-clip-text text-transparent">
-                          Renewable Energy
-                        </span>
-                        <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-accent to-accent-warm rounded-full opacity-60"></div>
-                      </span>
-                    )}
-                    {slide.title.includes('Continental Impact') && (
-                      <span className="relative">
-                        <span className="bg-gradient-to-r from-accent to-accent-warm bg-clip-text text-transparent">
-                          Continental Impact
-                        </span>
-                        <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-accent to-accent-warm rounded-full opacity-60"></div>
-                      </span>
-                    )}
-                    {slide.title.split('Sustainable Future')[1] || slide.title.split('Renewable Energy')[1] || slide.title.split('Continental Impact')[1] || ''}
-                  </h1>
-                  
-                  {/* Enhanced Sub-headline */}
-                  <p className="text-xl md:text-2xl lg:text-3xl mb-16 max-w-5xl mx-auto leading-relaxed text-white/95 font-light">
-                    {slide.subtitle.split(' energy transition')[0]}
-                    {slide.subtitle.includes(' energy transition') && <span className="font-semibold text-accent-warm"> energy transition</span>}
-                    {slide.subtitle.split(' energy transition')[1] || slide.subtitle}
-                    {slide.subtitle.includes(' sustainability journey') && <span className="font-semibold text-accent"> sustainability journey</span>}
-                  </p>
-                  
-                  {/* Enhanced CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8 mb-20">
-                    <Button 
-                      size="lg" 
-                      className="bg-accent hover:bg-accent-warm text-secondary px-12 py-6 text-xl font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 rounded-full group"
-                    >
-                      Join the Movement
-                      <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform" />
-                    </Button>
-                    
-                    <Button 
-                      size="lg" 
-                      variant="outline" 
-                      className="bg-white/10 border-2 border-white/40 text-white hover:bg-white hover:text-secondary backdrop-blur-md px-12 py-6 text-xl font-semibold rounded-full transform hover:scale-105 transition-all duration-300"
-                    >
-                      Partner With Us
-                    </Button>
-                    
-                    <Button 
-                      size="lg" 
-                      variant="ghost" 
-                      className="text-white hover:bg-white/20 px-10 py-6 text-xl font-semibold group rounded-full"
-                    >
-                      <Play className="mr-3 w-6 h-6 text-accent group-hover:text-accent-warm transition-colors" />
-                      Learn More
-                    </Button>
-                  </div>
-                  
-                  {/* Enhanced Impact Stats */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-                    {slide.stats.map((stat, statIndex) => (
-                      <div key={statIndex} className="text-center scale-in bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20" style={{animationDelay: `${statIndex * 0.2}s`}}>
-                        <div className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 ${stat.color}`}>{stat.number}</div>
-                        <div className="text-lg md:text-xl text-white/90 font-medium">{stat.label}</div>
-                        <div className="text-sm text-white/70 mt-2">{stat.desc}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                key={index} 
+                className="bg-white/10 rounded-xl p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/20 hover:shadow-lg"
+              >
+                <div className={`text-3xl font-bold mb-2 ${stat.color}`}>{stat.number}</div>
+                <div className="text-white/90">{stat.label}</div>
               </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        
-        {/* Custom Navigation Arrows */}
-        <CarouselPrevious className="absolute left-8 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 border-white/40 text-white backdrop-blur-md" />
-        <CarouselNext className="absolute right-8 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 border-white/40 text-white backdrop-blur-md" />
-        
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-8 h-12 border-2 border-white/60 rounded-full flex justify-center bg-white/10 backdrop-blur-sm">
-            <div className="w-2 h-4 bg-accent rounded-full mt-2 animate-pulse"></div>
+            ))}
           </div>
         </div>
-      </Carousel>
+        
+        {/* Navigation Arrows */}
+        <button 
+          onClick={goToPrev}
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 p-3 rounded-full transition-all duration-300 z-20"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        
+        <button 
+          onClick={goToNext}
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 p-3 rounded-full transition-all duration-300 z-20"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+        
+        {/* Dots Navigation */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/70 w-3'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
     </section>
   );
 };
