@@ -1,28 +1,29 @@
 import { useState } from 'react';
 import { Menu, X, Leaf, Globe, Target, Users, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: 'Home', href: '#home', icon: Globe },
+    { name: 'Home', href: '/', icon: Globe },
     { 
       name: 'About', 
-      href: '#about',
+      href: '/about',
       icon: Target,
       dropdown: ['Mission & Vision', 'Leadership', 'Governance']
     },
     { 
       name: 'Initiatives', 
-      href: '#initiatives',
+      href: '/initiatives',
       icon: Leaf,
       dropdown: ['Clean Energy', 'Decarbonization', 'Partnerships', 'Circular Economy']
     },
-    { name: 'Strategic Focus', href: '#strategic-focus', icon: Target },
-    { name: 'Partnerships', href: '#partnerships', icon: Users },
-    { name: 'Resources', href: '#resources', icon: Globe },
-    { name: 'Contact', href: '#contact', icon: Globe },
+    { name: 'Strategic Focus', href: '/strategic-focus', icon: Target },
+    { name: 'Partnerships', href: '/partnerships', icon: Users },
+    { name: 'Resources', href: '/resources', icon: Globe },
+    { name: 'Contact', href: '/contact', icon: Globe },
   ];
 
   return (
@@ -44,14 +45,14 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-2">
             {navItems.map((item) => (
               <div key={item.name} className="relative group">
-                <a
-                  href={item.href}
+                <Link
+                  to={item.href}
                   className="flex items-center space-x-2 px-4 py-3 rounded-xl text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 font-medium group"
                 >
                   <item.icon className="w-4 h-4 group-hover:text-accent transition-colors" />
                   <span>{item.name}</span>
                   {item.dropdown && <ChevronDown className="w-4 h-4 ml-1 group-hover:rotate-180 transition-transform duration-200" />}
-                </a>
+                </Link>
                 
                 {item.dropdown && (
                   <div className="absolute top-full left-0 mt-2 w-56 bg-card/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
@@ -107,15 +108,15 @@ const Navigation = () => {
           <div className="lg:hidden border-t border-border bg-card/95 backdrop-blur-xl rounded-b-2xl shadow-2xl">
             <div className="px-4 py-6 space-y-2">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="flex items-center space-x-3 px-4 py-3 rounded-xl text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200 font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   <item.icon className="w-5 h-5" />
                   <span>{item.name}</span>
-                </a>
+                </Link>
               ))}
               <div className="pt-4 space-y-3 border-t border-border">
                 <Button 
